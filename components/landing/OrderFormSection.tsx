@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
@@ -17,7 +18,6 @@ export function OrderFormSection() {
     quantity: 1,
   });
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -30,7 +30,6 @@ export function OrderFormSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setMessage('');
 
     try {
       const total = PRODUCT_PRICE * formData.quantity;
@@ -44,14 +43,11 @@ export function OrderFormSection() {
         }),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        setMessage('অর্ডার করতে ব্যর্থ হয়েছে। দয়া করে আবার চেষ্টা করুন।');
+        toast.error('অর্ডার করতে ব্যর্থ হয়েছে। দয়া করে আবার চেষ্টা করুন।');
         return;
       }
 
-      // Track Meta Pixel event
       if (typeof window !== 'undefined' && (window as any).fbq) {
         (window as any).fbq('track', 'AddToCart', {
           value: total,
@@ -60,7 +56,7 @@ export function OrderFormSection() {
         });
       }
 
-      setMessage('✓ আপনার অর্ডার সফলভাবে গ্রহণ করা হয়েছে। আমরা শীঘ্রই যোগাযোগ করব।');
+      toast.success('আপনার অর্ডার সফলভাবে গ্রহণ করা হয়েছে। আমরা শীঘ্রই যোগাযোগ করব।');
       setFormData({
         name: '',
         email: '',
@@ -69,7 +65,7 @@ export function OrderFormSection() {
         quantity: 1,
       });
     } catch (error) {
-      setMessage('একটি ত্রুটি ঘটেছে। দয়া করে আবার চেষ্টা করুন।');
+      toast.error('একটি ত্রুটি ঘটেছে। দয়া করে আবার চেষ্টা করুন।');
       console.error(error);
     } finally {
       setLoading(false);
@@ -210,18 +206,6 @@ export function OrderFormSection() {
                       ৳ {PRODUCT_PRICE * formData.quantity}
                     </p>
                   </div>
-
-                  {message && (
-                    <div
-                      className={`p-3 rounded-md text-sm ${
-                        message.includes('✓')
-                          ? 'bg-green-500/10 text-green-500'
-                          : 'bg-destructive/10 text-destructive'
-                      }`}
-                    >
-                      {message}
-                    </div>
-                  )}
 
                   <Button
                     type="submit"

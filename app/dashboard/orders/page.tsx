@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -51,9 +52,13 @@ export default function OrdersPage() {
       });
 
       if (response.ok) {
+        toast.success('Order deleted successfully');
         fetchOrders();
+      } else {
+        toast.error('Failed to delete order');
       }
     } catch (error) {
+      toast.error('Failed to delete order');
       console.error('Error deleting order:', error);
     }
   };

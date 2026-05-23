@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
@@ -61,6 +62,7 @@ export default function DashboardPage() {
       });
 
       if (response.ok) {
+        toast.success('Order confirmed successfully');
         if (typeof window !== 'undefined' && (window as any).fbq) {
           (window as any).fbq('track', 'Purchase', {
             value: orders.find((o) => o._id === orderId)?.total,
@@ -70,8 +72,11 @@ export default function DashboardPage() {
         }
 
         fetchOrders();
+      } else {
+        toast.error('Failed to confirm order');
       }
     } catch (error) {
+      toast.error('Failed to confirm order');
       console.error('Error confirming order:', error);
     }
   };
@@ -85,9 +90,13 @@ export default function DashboardPage() {
       });
 
       if (response.ok) {
+        toast.success('Order cancelled successfully');
         fetchOrders();
+      } else {
+        toast.error('Failed to cancel order');
       }
     } catch (error) {
+      toast.error('Failed to cancel order');
       console.error('Error cancelling order:', error);
     }
   };

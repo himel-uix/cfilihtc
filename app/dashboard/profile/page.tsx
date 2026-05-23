@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -25,13 +26,11 @@ export default function ProfilePage() {
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [saving, setSaving] = useState(false);
-    const [profileMsg, setProfileMsg] = useState({ type: "", text: "" });
 
     const [newName, setNewName] = useState("");
     const [newEmail, setNewEmail] = useState("");
     const [newAdminPassword, setNewAdminPassword] = useState("");
     const [creating, setCreating] = useState(false);
-    const [createMsg, setCreateMsg] = useState({ type: "", text: "" });
 
     useEffect(() => {
         fetchAdmin();
@@ -57,15 +56,14 @@ export default function ProfilePage() {
 
     const handleProfileSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setProfileMsg({ type: "", text: "" });
 
         if (newPassword && newPassword !== confirmPassword) {
-            setProfileMsg({ type: "error", text: "Passwords do not match" });
+            toast.error("Passwords do not match");
             return;
         }
 
         if (newPassword && newPassword.length < 6) {
-            setProfileMsg({ type: "error", text: "Password must be at least 6 characters" });
+            toast.error("Password must be at least 6 characters");
             return;
         }
 
@@ -87,7 +85,7 @@ export default function ProfilePage() {
             const data = await response.json();
 
             if (!response.ok) {
-                setProfileMsg({ type: "error", text: data.error || "Failed to update profile" });
+                toast.error(data.error || "Failed to update profile");
                 return;
             }
 
@@ -97,9 +95,9 @@ export default function ProfilePage() {
             setCurrentPassword("");
             setNewPassword("");
             setConfirmPassword("");
-            setProfileMsg({ type: "success", text: "Profile updated successfully" });
+            toast.success("Profile updated successfully");
         } catch (error) {
-            setProfileMsg({ type: "error", text: "An error occurred" });
+            toast.error("An error occurred");
             console.error(error);
         } finally {
             setSaving(false);
@@ -108,10 +106,9 @@ export default function ProfilePage() {
 
     const handleCreateAdmin = async (e: React.FormEvent) => {
         e.preventDefault();
-        setCreateMsg({ type: "", text: "" });
 
         if (newAdminPassword.length < 6) {
-            setCreateMsg({ type: "error", text: "Password must be at least 6 characters" });
+            toast.error("Password must be at least 6 characters");
             return;
         }
 
@@ -131,16 +128,16 @@ export default function ProfilePage() {
             const data = await response.json();
 
             if (!response.ok) {
-                setCreateMsg({ type: "error", text: data.error || "Failed to create admin" });
+                toast.error(data.error || "Failed to create admin");
                 return;
             }
 
             setNewName("");
             setNewEmail("");
             setNewAdminPassword("");
-            setCreateMsg({ type: "success", text: "Super admin created successfully" });
+            toast.success("Super admin created successfully");
         } catch (error) {
-            setCreateMsg({ type: "error", text: "An error occurred" });
+            toast.error("An error occurred");
             console.error(error);
         } finally {
             setCreating(false);
@@ -165,18 +162,6 @@ export default function ProfilePage() {
             <Card className="border-border bg-card/50 max-w-2xl">
                 <form onSubmit={handleProfileSubmit} className="p-8 space-y-6">
                     <h2 className="text-2xl font-bold text-foreground">Edit Your Profile</h2>
-
-                    {profileMsg.text && (
-                        <div
-                            className={`p-3 rounded-md text-sm ${
-                                profileMsg.type === "success"
-                                    ? "bg-green-500/10 border border-green-500 text-green-500"
-                                    : "bg-destructive/10 border border-destructive text-destructive"
-                            }`}
-                        >
-                            {profileMsg.text}
-                        </div>
-                    )}
 
                     <div className="space-y-2">
                         <Label htmlFor="name">Name</Label>
@@ -257,23 +242,11 @@ export default function ProfilePage() {
                 </form>
             </Card>
 
-            {/* Demo form field to create new super admins  --------------------- */}
+            {/* Create admin form to test create admin method ----  */}
 
             {/* <Card className="border-border bg-card/50 max-w-2xl">
                 <form onSubmit={handleCreateAdmin} className="p-8 space-y-6">
                     <h2 className="text-2xl font-bold text-foreground">Create Super Admin</h2>
-
-                    {createMsg.text && (
-                        <div
-                            className={`p-3 rounded-md text-sm ${
-                                createMsg.type === 'success'
-                                    ? 'bg-green-500/10 border border-green-500 text-green-500'
-                                    : 'bg-destructive/10 border border-destructive text-destructive'
-                            }`}
-                        >
-                            {createMsg.text}
-                        </div>
-                    )}
 
                     <div className="space-y-2">
                         <Label htmlFor="newName">Name</Label>
@@ -312,7 +285,7 @@ export default function ProfilePage() {
                         className="bg-primary hover:bg-primary/90 text-primary-foreground"
                         disabled={creating}
                     >
-                        {creating ? 'Creating...' : 'Create Super Admin'}
+                        {creating ? "Creating..." : "Create Super Admin"}
                     </Button>
                 </form>
             </Card> */}
