@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sessionOptions } from '@/lib/auth';
+import { sessionOptions, SessionData } from '@/lib/auth';
 import { getIronSession } from 'iron-session';
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await getIronSession(request, new NextResponse(), sessionOptions);
+    const response = NextResponse.json({ success: true });
+    const session = await getIronSession<SessionData>(request, response, sessionOptions);
     session.destroy();
 
-    return NextResponse.json({ success: true });
+    return response;
   } catch (error) {
     console.error('Logout error:', error);
     return NextResponse.json(
