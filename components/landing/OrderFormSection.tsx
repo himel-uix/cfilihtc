@@ -51,7 +51,7 @@ export function OrderFormSection() {
             if (typeof window !== "undefined" && (window as any).fbq) {
                 (window as any).fbq("track", "Purchase", {
                     value: total,
-                    currency: "BDT",
+                    currency: "USD",
                     content_name: "Men's 40+ Multivitamin",
                 });
             }
