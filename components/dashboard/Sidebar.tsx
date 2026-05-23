@@ -3,10 +3,21 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
+import { useEffect, useState } from 'react';
 
 export function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
+  const [adminName, setAdminName] = useState('Admin');
+
+  useEffect(() => {
+    fetch('/api/auth/me')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.admin) setAdminName(data.admin.name);
+      })
+      .catch(() => {});
+  }, []);
 
   const handleLogout = async () => {
     await fetch('/api/auth/logout', { method: 'POST' });
@@ -43,10 +54,12 @@ export function Sidebar() {
 
       {/* User Section */}
       <div className="p-4 border-t border-sidebar-border space-y-3">
-        <div className="bg-sidebar-accent/30 rounded-md p-3">
-          <p className="text-xs text-sidebar-accent-foreground">Logged in as</p>
-          <p className="text-sm font-semibold text-sidebar-foreground">Admin</p>
-        </div>
+        <Link href="/dashboard/profile">
+          <div className="bg-sidebar-accent/30 rounded-md p-3 hover:bg-sidebar-accent/50 transition-colors cursor-pointer">
+            <p className="text-xs text-sidebar-accent-foreground">Logged in as</p>
+            <p className="text-sm font-semibold text-sidebar-foreground">{adminName}</p>
+          </div>
+        </Link>
         <Button
           onClick={handleLogout}
           className="w-full bg-destructive hover:bg-destructive/90 text-white"

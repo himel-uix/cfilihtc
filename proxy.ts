@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getIronSession } from "iron-session";
-import { sessionOptions, SessionData } from "@/lib/auth";
+import { sessionOptions, SessionData } from "@/lib/session";
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
 
-    // Protect dashboard routes
     if (pathname.startsWith("/dashboard")) {
         const session = await getIronSession<SessionData>(request, NextResponse.next(), sessionOptions);
 
@@ -14,7 +13,6 @@ export async function middleware(request: NextRequest) {
         }
     }
 
-    // Redirect logged-in users from login page to dashboard
     if (pathname === "/login") {
         const session = await getIronSession<SessionData>(request, NextResponse.next(), sessionOptions);
 

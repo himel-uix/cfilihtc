@@ -61,7 +61,6 @@ export default function DashboardPage() {
       });
 
       if (response.ok) {
-        // Track Meta Pixel event
         if (typeof window !== 'undefined' && (window as any).fbq) {
           (window as any).fbq('track', 'Purchase', {
             value: orders.find((o) => o._id === orderId)?.total,
@@ -75,6 +74,26 @@ export default function DashboardPage() {
     } catch (error) {
       console.error('Error confirming order:', error);
     }
+  };
+
+  const handleCancelOrder = async (orderId: string) => {
+    try {
+      const response = await fetch(`/api/orders/${orderId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'Cancelled' }),
+      });
+
+      if (response.ok) {
+        fetchOrders();
+      }
+    } catch (error) {
+      console.error('Error cancelling order:', error);
+    }
+  };
+
+  const handleCall = (phone: string) => {
+    window.location.href = `tel:${phone}`;
   };
 
   return (
@@ -189,18 +208,28 @@ export default function DashboardPage() {
                     <td className="py-4 px-4">
                       <div className="flex gap-2">
                         {order.status === 'Pending' && (
-                          <Button
-                            size="sm"
-                            className="bg-green-600 hover:bg-green-700 text-white text-xs px-2"
-                            onClick={() => handleConfirmOrder(order._id)}
-                          >
-                            Confirm
-                          </Button>
+                          <>
+                            <Button
+                              size="sm"
+                              className="bg-green-600 hover:bg-green-700 text-white text-xs px-2"
+                              onClick={() => handleConfirmOrder(order._id)}
+                            >
+                              Confirm
+                            </Button>
+                            <Button
+                              size="sm"
+                              className="bg-red-600 hover:bg-red-700 text-white text-xs px-2"
+                              onClick={() => handleCancelOrder(order._id)}
+                            >
+                              Cancel
+                            </Button>
+                          </>
                         )}
                         <Button
                           size="sm"
                           variant="outline"
                           className="text-xs px-2"
+                          onClick={() => handleCall(order.phone)}
                         >
                           Call
                         </Button>

@@ -1,39 +1,16 @@
-import { SessionOptions } from "iron-session";
 import { connectDB } from "./mongodb";
 import bcryptjs from "bcryptjs";
+import { Admin } from "./models/Admin";
+import type { AdminData, SessionData } from "./session";
+import { sessionOptions } from "./session";
 
-interface Admin {
-    id: string;
-    email: string;
-    name: string;
-}
-
-export interface SessionData {
-    admin?: Admin;
-}
-
-declare global {
-    namespace NodeJS {
-        interface ProcessEnv {
-            IRON_PASSWORD: string;
-        }
-    }
-}
-
-export const sessionOptions: SessionOptions = {
-    password: process.env.IRON_PASSWORD || "a-secret-with-at-least-32-characters-long",
-    cookieName: "admin_session",
-    cookieOptions: {
-        secure: process.env.NODE_ENV === "production",
-        httpOnly: true,
-        sameSite: "lax",
-    },
-};
+export type { AdminData, SessionData };
+export { sessionOptions };
 
 const DEFAULT_ADMIN = {
     id: "1",
     email: "admin@cfilihtc.com",
-    password: "admin@123", // Default password, should be changed
+    password: "admin@123",
     name: "Super Admin",
 };
 
@@ -45,16 +22,47 @@ export async function hashPassword(password: string) {
     return await bcryptjs.hash(password, 10);
 }
 
-export async function authenticateAdmin(email: string, password: string): Promise<Admin | null> {
+export async function seedDefaultAdmin() {
     try {
-        // For demo, use default admin
+        await connectDB();
+        const existing = await Admin.findOne({ email: DEFAULT_ADMIN.email });
+        if (!existing) {
+            const hashed = await hashPassword(DEFAULT_ADMIN.password);
+            await Admin.create({
+                email: DEFAULT_ADMIN.email,
+                password: hashed,
+                name: DEFAULT_ADMIN.name,
+            });
+        }
+    } catch (error) {
+        console.error("Seed admin error:", error);
+    }
+}
+
+export async function authenticateAdmin(email: string, password: string): Promise<AdminData | null> {
+    try {
+        await connectDB();
+
+        const admin = await Admin.findOne({ email });
+        if (admin) {
+            const valid = await verifyPassword(password, admin.password);
+            if (!valid) return null;
+            return {
+                id: admin._id.toString(),
+                email: admin.email,
+                name: admin.name,
+            };
+        }
+
         if (email === DEFAULT_ADMIN.email && password === DEFAULT_ADMIN.password) {
+            await seedDefaultAdmin();
             return {
                 id: DEFAULT_ADMIN.id,
                 email: DEFAULT_ADMIN.email,
                 name: DEFAULT_ADMIN.name,
             };
         }
+
         return null;
     } catch (error) {
         console.error("Auth error:", error);

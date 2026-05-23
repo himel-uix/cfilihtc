@@ -42,32 +42,6 @@ export default function OrdersPage() {
     }
   };
 
-  const handleConfirmOrder = async (orderId: string) => {
-    try {
-      const response = await fetch(`/api/orders/${orderId}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status: 'Confirmed' }),
-      });
-
-      if (response.ok) {
-        // Track Meta Pixel event
-        if (typeof window !== 'undefined' && (window as any).fbq) {
-          const order = orders.find((o) => o._id === orderId);
-          (window as any).fbq('track', 'Purchase', {
-            value: order?.total,
-            currency: 'BDT',
-            content_name: "Men's 40+ Multivitamin",
-          });
-        }
-
-        fetchOrders();
-      }
-    } catch (error) {
-      console.error('Error confirming order:', error);
-    }
-  };
-
   const handleDeleteOrder = async (orderId: string) => {
     if (!confirm('Are you sure you want to delete this order?')) return;
 
@@ -192,30 +166,13 @@ export default function OrdersPage() {
                       {new Date(order.createdAt).toLocaleDateString('en-GB')}
                     </td>
                     <td className="py-4 px-6">
-                      <div className="flex gap-2">
-                        {order.status === 'Pending' && (
-                          <Button
-                            size="sm"
-                            className="bg-green-600 hover:bg-green-700 text-white px-3 h-8 text-xs"
-                            onClick={() => handleConfirmOrder(order._id)}
-                          >
-                            ✓ Confirm
-                          </Button>
-                        )}
-                        <Button
-                          size="sm"
-                          className="bg-blue-600 hover:bg-blue-700 text-white px-3 h-8 text-xs"
-                        >
-                          ☎ Call
-                        </Button>
-                        <Button
-                          size="sm"
-                          className="bg-red-600 hover:bg-red-700 text-white px-3 h-8 text-xs"
-                          onClick={() => handleDeleteOrder(order._id)}
-                        >
-                          🗑 Delete
-                        </Button>
-                      </div>
+                      <Button
+                        size="sm"
+                        className="bg-red-600 hover:bg-red-700 text-white px-3 h-8 text-xs"
+                        onClick={() => handleDeleteOrder(order._id)}
+                      >
+                        🗑 Delete
+                      </Button>
                     </td>
                   </tr>
                 ))}
