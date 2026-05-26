@@ -1,0 +1,49 @@
+name: Deploy Next.js App
+
+on:
+    push:
+        branches:
+            - main # Or your default branch name
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+
+            - name: Deploy via SSH
+              uses: appleboy/ssh-action@v1.0.3
+              with:
+                  host: ${{ secrets.SSH_HOST }}
+                  username: ${{ secrets.SSH_USER }}
+                  key: ${{ secrets.SSH_KEY }}
+                  port: 22
+                  script: |
+                      # Navigate to application directory
+                      cd /var/www/cfilihtc-app
+
+                      # If git isn't initialized yet, clone or pull
+                      if [ ! -d ".git" ]; then
+                        git clone https://github.com/${{ github.repository }}.git .
+                      else
+                        git pull origin main
+                      fi
+
+                      # Install dependencies and build Next.js app
+                      npm install
+                      npm run build
+
+                      # Start or Reload the app with PM2
+                      pm2 describe cfilihtc-app > /dev/null
+                      if [ $? -eq 0 ]; then
+                        echo "App is running. Reloading..."
+                        pm2 reload cfilihtc-app --update-env
+                      else
+                        echo "App is not running. Starting..."
+                        pm2 start npm --name "cfilihtc-app" -- start
+                      fi
+
+                      # Save PM2 state so it revives on system reboot
+                      pm2 save
