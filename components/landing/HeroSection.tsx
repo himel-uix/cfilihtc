@@ -7,19 +7,25 @@ import { handleOrderClick } from "@/lib/utils";
 
 export function HeroSection({ onOrderClick }: { onOrderClick: () => void }) {
     return (
-        <section>
-            <div className="grid grid-cols-2 gap-2 container mx-auto px-4">
+        <section className="mt-12">
+            <div className="grid grid-cols-2 gap-6 container mx-auto px-4">
                 <div>
-                    <Badge>লাইভ - স্টক শেষের আগেই নি</Badge>
-                    <h1>
-                        বিবাহর পর <span>হারানো শক্তি</span> ও আত্মবিশ্বাস <span>আবার ফিরে পান</span>
+                    <Badge
+                        variant={"destructive"}
+                        className="text-md border-2 border-red-500 bg-red-300 text-red-300 font-bold"
+                    >
+                        🔴 লাইভ - স্টক শেষের আগেই নিন
+                    </Badge>
+                    <h1 className="text-6xl font-bold my-8">
+                        বিবাহর পর <span className="text-primary">হারানো শক্তি</span> ও আত্মবিশ্বাস{" "}
+                        <span className="text-primary">আবার ফিরে পান</span>
                     </h1>
                     <p>
                         আপনার কি ভেতরের শক্তি কমে গেছে? স্ত্রীর কাছে নিজেকে ছোট মনে হচ্ছে? আর নয়
                         OUT। Men's 40+ Multivitamin - পুরুষের জন্য বিশেষ ফর্মুলা। MEN’S 40+
                         Multivitamin ব্যবহারে সিংহের মতো গর্জন হবে খেলার মাঠে
                     </p>
-                    <ul>
+                    <ul className="my-8">
                         <li className="flex gap-2 items-center">
                             <Image src={"/icons/round-fire.png"} alt="" width={28} height={28} />{" "}
                             যৌ/ন শক্তি ও স্ট্যামিনা বৃদ্ধিতে সহায়ক
@@ -45,15 +51,20 @@ export function HeroSection({ onOrderClick }: { onOrderClick: () => void }) {
                             ৩০+ ভিটামিন ও মিনারেল - ১ বোতলে
                         </li>
                     </ul>
-                    <div>
-                        <del>৳৫,৯৯৮</del>
-                        <h2>৳২,৯৯৯</h2>
-                        <Badge>৫০% ছাড়</Badge>
+                    <div className="flex items-center gap-6 my-4">
+                        <del className="text-red-500 text-lg">৳৫,৯৯৮</del>
+                        <h2 className="text-6xl font-bold text-primary">৳২,৯৯৯</h2>
+                        <Badge
+                            variant={"destructive"}
+                            className="text-md border-2 border-red-500 bg-red-300 text-red-300 font-bold"
+                        >
+                            ৫০% ছাড়
+                        </Badge>
                     </div>
-                    <div>
+                    <div className="flex flex-col items-center gap-2 mt-8">
                         <Button
                             size="lg"
-                            className="bg-primary hover:bg-primary/90 w-full text-white font-semibold px-8"
+                            className="bg-primary hover:bg-primary/90 w-full text-white font-semibold px-8 py-6 text-xl"
                             onClick={handleOrderClick}
                         >
                             <Image src={"/icons/cart.png"} alt="" width={28} height={28} /> এখনই
@@ -62,7 +73,12 @@ export function HeroSection({ onOrderClick }: { onOrderClick: () => void }) {
                         <p>📦 ঘরে পেয়ে টাকা দিন · ✅ কনফার্মেশন কল পাবেন · 💸 সহজ রিফান্ড পলিসি</p>
                         <ul className="flex gap-2 items-center">
                             <li className="flex gap-2 items-center">
-                                <Image src={"/icons/star-blue.svg"} alt="" width={28} height={28} />
+                                <Image
+                                    src={"/icons/star-blue.svg"}
+                                    alt=""
+                                    width={100}
+                                    height={28}
+                                />
                                 ৫ স্টার রেটিং
                             </li>
                             <li className="flex gap-2 items-center">
@@ -76,20 +92,20 @@ export function HeroSection({ onOrderClick }: { onOrderClick: () => void }) {
                         </ul>
                     </div>
                 </div>
-                <div>
+                <div className="flex flex-col items-center gap-4">
                     <Image src={"/images/hero-img.png"} alt="" width={440} height={520} />
                     <Image src={"/images/hero-rating.png"} alt="" width={300} height={110} />
                 </div>
             </div>
-            <div className="flex items-center gap-2 container mx-auto px-5">
+            <div className="flex items-center gap-6 container mx-auto px-5 mt-8">
                 <div>
                     <p>৳৫,৯৯৮</p>
-                    <h4>৳২,৯৯৯</h4>
+                    <h4 className="text-xl font-bold text-primary">৳২,৯৯৯</h4>
                 </div>
 
                 <Button
                     size="lg"
-                    className="bg-primary hover:bg-primary/90 w-full text-white font-semibold px-8"
+                    className="bg-primary hover:bg-primary/90 w-full text-white font-semibold px-8 py-6 text-xl"
                     onClick={handleOrderClick}
                 >
                     এখনই অর্ডার করুন
@@ -100,7 +116,7 @@ export function HeroSection({ onOrderClick }: { onOrderClick: () => void }) {
                 alt=""
                 width={1920}
                 height={132}
-                className="w-full mt-8"
+                className="w-full mt-12"
             />
         </section>
     );

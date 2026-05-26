@@ -9,7 +9,7 @@ function Header() {
                 ৫৫০২ জন, অবশিষ্ট স্টকঃ ৯৭ পিস, লাইভ স্টক ০ হলে আর অর্ডার গ্রহনযোগ্য হবে না
             </h4>
             <nav className="flex justify-between items-center gap-2 container mx-auto px-4 py-8">
-                <a href="/" className="uppercase font-bold text-primary">
+                <a href="/" className="uppercase font-bold text-primary text-3xl">
                     CFILIHTC
                 </a>
 
