@@ -97,27 +97,6 @@ export function HeroSection({ onOrderClick }: { onOrderClick: () => void }) {
                     <Image src={"/images/hero-rating.png"} alt="" width={300} height={110} />
                 </div>
             </div>
-            <div className="flex items-center gap-6 container mx-auto px-5 mt-8">
-                <div>
-                    <p>৳৫,৯৯৮</p>
-                    <h4 className="text-xl font-bold text-primary">৳২,৯৯৯</h4>
-                </div>
-
-                <Button
-                    size="lg"
-                    className="bg-primary hover:bg-primary/90 w-full text-white font-semibold px-8 py-6 text-xl"
-                    onClick={handleOrderClick}
-                >
-                    এখনই অর্ডার করুন
-                </Button>
-            </div>
-            <Image
-                src={"/images/hero-strip.png"}
-                alt=""
-                width={1920}
-                height={132}
-                className="w-full mt-12"
-            />
         </section>
     );
 }
