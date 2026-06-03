@@ -9,6 +9,9 @@ import { Footer } from "@/components/landing/Footer";
 import Header from "@/components/landing/Header";
 import StickyCta from "@/components/landing/StickyCta";
 import Image from "next/image";
+import KabuSection from "@/components/landing/KabuSection";
+import Men40 from "@/components/landing/Men40";
+import Changes from "@/components/landing/Changes";
 
 export default function HomePage() {
     const handleOrderClick = () => {
@@ -31,11 +34,12 @@ export default function HomePage() {
                     height={132}
                     className="w-full mt-12"
                 />
-                <FeaturesSection />
+                <KabuSection />
+                <Men40 />
+                <Changes />
                 <div id="order-form">
                     <OrderFormSection />
                 </div>
-                <TestimonialsSection />
                 <FAQSection />
                 <Footer />
             </main>
