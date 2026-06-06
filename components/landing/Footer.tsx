@@ -1,75 +1,26 @@
-'use client';
+import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="bg-card/50 border-t border-border py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
-          <div>
-            <h3 className="text-xl font-bold text-primary mb-4">CFILIHTC</h3>
-            <p className="text-muted-foreground text-sm">
-              আপনার স্বাস্থ্য এবং সুস্বাস্থ্যের জন্য প্রিমিয়াম পণ্য সরবরাহকারী।
-            </p>
-          </div>
-
-          <div>
-            <h4 className="font-semibold text-foreground mb-4">পণ্য</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  Men&apos;s 40+ Multivitamin
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  বৈশিষ্ট্য
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  মূল্য নির্ধারণ
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold text-foreground mb-4">সাপোর্ট</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  যোগাযোগ করুন
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  FAQ
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-primary transition-colors">
-                  নীতিমালা
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold text-foreground mb-4">যোগাযোগ</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>ইমেইল: info@cfilihtc.com</li>
-              <li>ফোন: +880 1XXX-XXX-XXX</li>
-              <li>ঠিকানা: ঢাকা, বাংলাদেশ</li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="border-t border-border pt-8">
-          <p className="text-center text-muted-foreground text-sm">
-            © 2026 CFILIHTC. সব অধিকার সংরক্ষিত।
-          </p>
+    <>
+      <div className="py-6 md:py-8 lg:py-10 bg-[#030508] border-t border-[#FFFFFF0A]">
+        <div className="container mx-auto px-5 max-w-2xl space-y-4 text-center">
+          <h4 className="font-bold text-xs leading-5 text-[#CBD5E1]">Disclaimer</h4>
+          <p className="text-[#64748B] font-normal text-xs leading-4">This product is not intended to diagnose, treat, cure, or prevent any disease.</p>
         </div>
       </div>
-    </footer>
+      <footer className="bg-[#04060F] border-t border-[#0EA5E924] py-6">
+        <div className="conatiner mx-auto px-4">
+          <div className="max-w-2xl mx-auto text-center space-y-4">
+            <Link href="/" className="inline-block uppercase font-bold text-primary text-lg md:text-xl lg:text-3xl">
+              CFILIHTC
+            </Link>
+            <p className="text-[#64748B]">© ২০২৬ CFILIHTC. সর্বস্বত্ব সংরক্ষিত।</p>
+            <div className="flex gap-2 justify-center text-[#64748B]"><span>যোগাযোগ:<Link href="tell:01XXXXXXXXX">01XXXXXXXXX</Link></span><span><Link href="mail:support@cfilihtc.com">support@cfilihtc.com</Link></span></div>
+
+          </div>
+        </div>
+      </footer>
+    </>
   );
 }

@@ -12,6 +12,10 @@ import Image from "next/image";
 import KabuSection from "@/components/landing/KabuSection";
 import Men40 from "@/components/landing/Men40";
 import Changes from "@/components/landing/Changes";
+import PainSection from "@/components/landing/painSection";
+import WhySolutionSection from "@/components/landing/WhySolutionSection";
+import Benifit from "@/components/landing/Benifit";
+import Trust from "@/components/landing/Trust";
 
 export default function HomePage() {
     const handleOrderClick = () => {
@@ -35,6 +39,10 @@ export default function HomePage() {
                     className="w-full mt-12"
                 />
                 <KabuSection />
+                <PainSection />
+                <WhySolutionSection />
+                <Benifit />
+                <Trust />
                 <Men40 />
                 <Changes />
                 <div id="order-form">
