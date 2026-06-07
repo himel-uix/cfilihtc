@@ -16,6 +16,9 @@ import PainSection from "@/components/landing/painSection";
 import WhySolutionSection from "@/components/landing/WhySolutionSection";
 import Benifit from "@/components/landing/Benifit";
 import Trust from "@/components/landing/Trust";
+import Offer from "@/components/landing/Offer";
+import FinalCta from "@/components/landing/FinalCta";
+import Review from "@/components/landing/Review";
 
 export default function HomePage() {
     const handleOrderClick = () => {
@@ -43,6 +46,9 @@ export default function HomePage() {
                 <WhySolutionSection />
                 <Benifit />
                 <Trust />
+                <Review />
+                <Offer />
+                <FinalCta />
                 <Men40 />
                 <Changes />
                 <div id="order-form">

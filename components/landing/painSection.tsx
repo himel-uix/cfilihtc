@@ -29,7 +29,7 @@ const PainSection = () => {
       <div className="container mx-auto px-5 space-y-4 lg:space-y-9">
         <div className='space-y-3 lg:space-y-4'>
           <span className="inline-block px-3.5 py-1 bg-[#0EA5E914] rounded-[50px] border border-[#0EA5E952] font-bold tracking-[0.8px] text-[11.5px] text-[#38BDF8]">আপনি কি এই সমস্যায় ভুগছেন?</span>
-          <h2 className="text-[24px] md:text-[32px] lg:text-[40px] font-bold">
+          <h2 className="text-[24px] md:text-[32px] lg:text-[40px] font-bold text-[#F8FAFC]">
             <span className="text-[#F87171]">এই কষ্টগুলো</span> কি <br /> আপনাকেও কাবু করছে? বিবাহর পর
           </h2>
           <span className="inline-block w-13 h-0.75 rounded-[2px] bg-linear-to-r from-[#0EA5E9] to-transparent"></span>

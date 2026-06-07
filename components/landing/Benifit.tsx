@@ -31,7 +31,7 @@ const Benifit = () => {
                 <div className='space-y-3 lg:space-y-4'>
                     <span className="inline-block px-3.5 py-1 bg-[#0EA5E914] rounded-[50px] border border-[#0EA5E952] font-bold tracking-[0.8px] text-[11.5px] text-[#38BDF8]">মূল উপকারিতা</span>
                     <h2 className="text-[24px] md:text-[32px] lg:text-[40px] font-bold text-[#F8FAFC]">যে
-                        <span className="text-[#38BDF8]">৩টি পরিবর্তন</span><br /> আপনি অনুভব করবেন
+                        <span className="text-[#38BDF8]"> ৩টি পরিবর্তন</span><br /> আপনি অনুভব করবেন
                     </h2>
                     <span className="inline-block w-13 h-0.75 rounded-[2px] bg-linear-to-r from-[#0EA5E9] to-transparent"></span>
                 </div>
