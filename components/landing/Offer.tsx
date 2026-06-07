@@ -4,13 +4,13 @@ import Link from 'next/link'
 
 const Offer = () => {
     return (
-        <section className='py-6 md:py-10 lg:py-20 bg-[linear-gradient(180deg,_#070B18_0%,_#030508_100%)]'>
+        <section className='pt-20 py-6 md:py-10 lg:py-20 bg-[linear-gradient(180deg,_#070B18_0%,_#030508_100%)]'>
             <div className='container mx-auto px-5 lg:max-w-2xl'>
-                <div className="rounded-[28px] bg-[#141C2E] border border-[#0EA5E952] shadow-[0px_0px_24px_rgba(14,165,233,0.38)] px-6 md:px-8 lg:px-10 pt-8 md:pt-10 lg:pt-15 pb-6 md:pb-8 lg:pb-12 relative">
+                <div className="rounded-[28px] bg-[#141C2E] border border-[#0EA5E952] shadow-[0px_0px_24px_rgba(14,165,233,0.38)] px-6 md:px-8 lg:px-10 pt-20 md:pt-10 lg:pt-15 pb-6 md:pb-8 lg:pb-12 relative">
                     <div className='py-2 px-6 rounded-[50px] bg-linear-to-r from-[#DC2626] to-[#EF4444] shadow-[0px_4px_20px_rgba(239,68,68,0.4)] font-bold text-sm leading-6 text-center text-white absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>🔥 সীমিত সময়ের ধামাকা অফার 🔥</div>
                     <div className='space-y-4 md:space-y-5 lg:space-y-7'>
                         <div className='space-y-3 lg:space-y-5 text-center'>
-                            <span className="py-1 px-3.5 rounded-[50px] bg-[#0EA5E914] border border-[#0EA5E952] text-xs leading-4.5 text-center text-[#38BDF8] font-bold">বিশেষ মূল্য ছাড়</span>
+                            <span className="inline-block py-1 px-3.5 rounded-[50px] bg-[#0EA5E914] border border-[#0EA5E952] text-xs leading-4.5 text-center text-[#38BDF8] font-bold">বিশেষ মূল্য ছাড়</span>
                             <h2 className="text-[24px] md:text-[32px] lg:text-[40px] font-bold text-[#F8FAFC] text-center">৫০% ছাড়ে নিন - <br /> <span className="text-[#38BDF8]">আজকেই শেষ সুযোগ!</span></h2>
                         </div>
                         <div className='space-y-3'>

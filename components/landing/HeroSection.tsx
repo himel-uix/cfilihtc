@@ -7,16 +7,16 @@ import { handleOrderClick } from "@/lib/utils";
 
 export function HeroSection({ onOrderClick }: { onOrderClick: () => void }) {
     return (
-        <section className="mt-12">
-            <div className="grid grid-cols-2 gap-6 container mx-auto px-4">
-                <div>
+        <section className="mt-5 md:mt-8 lg:mt-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 container mx-auto px-4">
+                <div className="order-last lg:order-first">
                     <Badge
                         variant={"destructive"}
                         className="text-md border-2 border-red-500 bg-red-300 text-red-300 font-bold"
                     >
                         🔴 লাইভ - স্টক শেষের আগেই নিন
                     </Badge>
-                    <h1 className="text-6xl font-bold my-8">
+                    <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold my-4 md:my-6 lg:my-8">
                         বিবাহর পর <span className="text-primary">হারানো শক্তি</span> ও আত্মবিশ্বাস{" "}
                         <span className="text-primary">আবার ফিরে পান</span>
                     </h1>
@@ -25,35 +25,35 @@ export function HeroSection({ onOrderClick }: { onOrderClick: () => void }) {
                         OUT। Men's 40+ Multivitamin - পুরুষের জন্য বিশেষ ফর্মুলা। MEN’S 40+
                         Multivitamin ব্যবহারে সিংহের মতো গর্জন হবে খেলার মাঠে
                     </p>
-                    <ul className="my-8">
-                        <li className="flex gap-2 items-center">
+                    <ul className="my-8 space-y-2">
+                        <li className="flex gap-2 items-start">
                             <Image src={"/icons/round-fire.png"} alt="" width={28} height={28} />{" "}
                             যৌ/ন শক্তি ও স্ট্যামিনা বৃদ্ধিতে সহায়ক
                         </li>
-                        <li className="flex gap-2 items-center">
+                        <li className="flex gap-2 items-start">
                             <Image src={"/icons/round-clock.png"} alt="" width={28} height={28} />{" "}
                             ৪৫ থেকে ১ ঘন্টা খেলার সক্ষমতা তৈরি করে
                         </li>
-                        <li className="flex gap-2 items-center">
+                        <li className="flex gap-2 items-start">
                             <Image src={"/icons/round-arm.png"} alt="" width={28} height={28} />{" "}
                             শরীরের অভ্যন্তরীণ শক্তি ফিরিয়ে আনে
                         </li>
-                        <li className="flex gap-2 items-center">
+                        <li className="flex gap-2 items-start">
                             <Image src={"/icons/round-sheld.png"} alt="" width={28} height={28} />{" "}
                             প্রোস্টেট ও হরমোন সাপোর্ট
                         </li>
-                        <li className="flex gap-2 items-center">
+                        <li className="flex gap-2 items-start">
                             <Image src={"/icons/round-thunder.png"} alt="" width={28} height={28} />{" "}
                             সারাদিনের এনার্জি ও মনোবল বাড়ায়
                         </li>
-                        <li className="flex gap-2 items-center">
+                        <li className="flex gap-2 items-start">
                             <Image src={"/icons/round-check.png"} alt="" width={28} height={28} />{" "}
                             ৩০+ ভিটামিন ও মিনারেল - ১ বোতলে
                         </li>
                     </ul>
-                    <div className="flex items-center gap-6 my-4">
+                    <div className="flex flex-wrap items-center gap-6 my-4">
                         <del className="text-red-500 text-lg">৳৫,৯৯৮</del>
-                        <h2 className="text-6xl font-bold text-primary">৳২,৯৯৯</h2>
+                        <h2 className="text-xl md:text-3xl lg:text-6xl font-bold text-primary">৳২,৯৯৯</h2>
                         <Badge
                             variant={"destructive"}
                             className="text-md border-2 border-red-500 bg-red-300 text-red-300 font-bold"
@@ -71,7 +71,7 @@ export function HeroSection({ onOrderClick }: { onOrderClick: () => void }) {
                             অর্ডার করুন
                         </Button>
                         <p>📦 ঘরে পেয়ে টাকা দিন · ✅ কনফার্মেশন কল পাবেন · 💸 সহজ রিফান্ড পলিসি</p>
-                        <ul className="flex gap-2 items-center">
+                        <ul className="flex flex-wrap gap-2 items-center">
                             <li className="flex gap-2 items-center">
                                 <Image
                                     src={"/icons/star-blue.svg"}

@@ -41,7 +41,7 @@ export default function HomePage() {
                     height={132}
                     className="w-full mt-12"
                 />
-                <KabuSection />
+                {/* <KabuSection /> */}
                 <PainSection />
                 <WhySolutionSection />
                 <Benifit />
@@ -49,8 +49,8 @@ export default function HomePage() {
                 <Review />
                 <Offer />
                 <FinalCta />
-                <Men40 />
-                <Changes />
+                {/* <Men40 /> */}
+                {/* <Changes /> */}
                 <div id="order-form">
                     <OrderFormSection />
                 </div>
