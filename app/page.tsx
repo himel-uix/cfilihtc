@@ -19,6 +19,7 @@ import Trust from "@/components/landing/Trust";
 import Offer from "@/components/landing/Offer";
 import FinalCta from "@/components/landing/FinalCta";
 import Review from "@/components/landing/Review";
+import Support from "@/components/landing/Support";
 
 export default function HomePage() {
     const handleOrderClick = () => {
@@ -34,13 +35,14 @@ export default function HomePage() {
             <main className="">
                 <HeroSection onOrderClick={handleOrderClick} />
                 <StickyCta />
-                <Image
+                {/* <Image
                     src={"/images/hero-strip.png"}
                     alt=""
                     width={1920}
                     height={132}
                     className="w-full mt-12"
-                />
+                /> */}
+                <Support />
                 {/* <KabuSection /> */}
                 <PainSection />
                 <WhySolutionSection />
