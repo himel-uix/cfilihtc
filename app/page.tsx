@@ -20,6 +20,10 @@ import Offer from "@/components/landing/Offer";
 import FinalCta from "@/components/landing/FinalCta";
 import Review from "@/components/landing/Review";
 import Support from "@/components/landing/Support";
+import whatsappIcon from "@/public/icons/whatsapp-icon.png"
+import privacyPolicyIcon from "@/public/icons/privacy-policy.png"
+import NotificationPopup from "@/components/landing/NotificationPopup";
+import PolicyPopup from "@/components/landing/PolicyPopup";
 
 export default function HomePage() {
     const handleOrderClick = () => {
@@ -35,30 +39,33 @@ export default function HomePage() {
             <main className="">
                 <HeroSection onOrderClick={handleOrderClick} />
                 <StickyCta />
-                {/* <Image
-                    src={"/images/hero-strip.png"}
-                    alt=""
-                    width={1920}
-                    height={132}
-                    className="w-full mt-12"
-                /> */}
                 <Support />
                 {/* <KabuSection /> */}
                 <PainSection />
                 <WhySolutionSection />
                 <Benifit />
-                <Trust />
                 <Review />
                 <Offer />
-                <FinalCta />
-                {/* <Men40 /> */}
-                {/* <Changes /> */}
                 <div id="order-form">
                     <OrderFormSection />
                 </div>
+                <Trust />
                 <FAQSection />
+                <FinalCta />
                 <Footer />
             </main>
+            {/* sociel */}
+            <div className="flex flex-col gap-1 fixed bottom-3 right-3 md:bottom-8 md:right-8 z-999">
+                <button className="size-13.5 rounded-full cursor-pointer">
+                    <Image className="w-full" src={whatsappIcon} alt="whatsapp logo" width={54} height={54} />
+                </button>
+                <button className="size-13.5 rounded-full cursor-pointer">
+                    <Image className="w-full" src={privacyPolicyIcon} alt="privacy policy" width={54} height={54} />
+                </button>
+            </div>
+            {/* sociel */}
+            <NotificationPopup />
+            <PolicyPopup />
         </>
     );
 }

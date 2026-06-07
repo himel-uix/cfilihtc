@@ -48,7 +48,7 @@ export function FAQSection() {
     <section className="py-6 md:py-10 lg:py-20 bg-background">
       <div className="container max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 md:space-y-10 lg:space-y-16">
         <div className='space-y-3 lg:space-y-4'>
-          <span className="inline-block px-3.5 py-1 bg-[#0EA5E914] rounded-[50px] border border-[#0EA5E952] font-bold tracking-[0.8px] text-[11.5px] text-[#38BDF8]">সাধারণ প্রশ্নোত্তর</span>
+          <span className="inline-block px-3.5 py-1 bg-[#0EA5E914] rounded-[50px] border border-[#0EA5E952] font-bold tracking-[0.8px] text-xs text-[#38BDF8]">সাধারণ প্রশ্নোত্তর</span>
           <h2 className="text-[24px] md:text-[32px] lg:text-[40px] font-bold text-[#F8FAFC]">
            আপনার মনে যে <span className='text-[#38BDF8]'>প্রশ্নগুলো</span> আসছে
           </h2>
@@ -72,7 +72,7 @@ export function FAQSection() {
                   className={`text-primary text-2xl shrink-0 transition-transform ${openIndex === index ? 'rotate-180' : ''
                     }`}
                 >
-                  ▼
+                  {openIndex === index ? '-' : '+'}
                 </span>
               </div>
 

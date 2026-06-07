@@ -12,7 +12,7 @@ const Review = () => {
                 </div>
                 <div className='lg:w-7/12 ml-auto space-y-6 md:space-y-8 lg:space-y-10'>
                     <div className='space-y-3 lg:space-y-4'>
-                        <span className="inline-block px-3.5 py-1 bg-[#0EA5E914] rounded-[50px] border border-[#0EA5E952] font-bold tracking-[0.8px] text-[11.5px] text-[#38BDF8]">গ্রাহকদের অভিজ্ঞতা</span>
+                        <span className="inline-block px-3.5 py-1 bg-[#0EA5E914] rounded-[50px] border border-[#0EA5E952] font-bold tracking-[0.8px] text-xs text-[#38BDF8]">গ্রাহকদের অভিজ্ঞতা</span>
                         <h2 className="text-[24px] md:text-[32px] lg:text-[40px] font-bold text-[#F8FAFC]">
                             গ্রাহকদের ভালোবাসায় <br /><span className='text-[#38BDF8]'>৫ স্টার রেটিং!</span>
                         </h2>

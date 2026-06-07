@@ -29,7 +29,7 @@ const Benifit = () => {
         <section className="py-6 md:py-10 lg:py-20 bg-[#04060F]">
             <div className="container mx-auto px-5 space-y-4 lg:space-y-9">
                 <div className='space-y-3 lg:space-y-4'>
-                    <span className="inline-block px-3.5 py-1 bg-[#0EA5E914] rounded-[50px] border border-[#0EA5E952] font-bold tracking-[0.8px] text-[11.5px] text-[#38BDF8]">মূল উপকারিতা</span>
+                    <span className="inline-block px-3.5 py-1 bg-[#0EA5E914] rounded-[50px] border border-[#0EA5E952] font-bold tracking-[0.8px] text-xs text-[#38BDF8]">মূল উপকারিতা</span>
                     <h2 className="text-[24px] md:text-[32px] lg:text-[40px] font-bold text-[#F8FAFC]">যে
                         <span className="text-[#38BDF8]"> ৩টি পরিবর্তন</span><br /> আপনি অনুভব করবেন
                     </h2>
