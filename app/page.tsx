@@ -22,6 +22,7 @@ import privacyPolicyIcon from "@/public/icons/privacy-policy.png"
 import NotificationPopup from "@/components/landing/NotificationPopup";
 import PolicyPopup from "@/components/landing/PolicyPopup";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function HomePage() {
     const handleOrderClick = () => {
@@ -58,9 +59,9 @@ export default function HomePage() {
             </main>
             {/* sociel */}
             <div className="flex flex-col gap-1 fixed bottom-3 right-3 md:bottom-8 md:right-8 z-999">
-                <button className="size-13.5 rounded-full cursor-pointer">
+                <Link target="_blank" href="https://wa.me/8801345245494" className="size-13.5 rounded-full cursor-pointer">
                     <Image className="w-full" src={whatsappIcon} alt="whatsapp logo" width={54} height={54} />
-                </button>
+                </Link>
                 <button onClick={() => setIsPopUpOpen(true)} className="size-13.5 rounded-full cursor-pointer">
                     <Image className="w-full" src={privacyPolicyIcon} alt="privacy policy" width={54} height={54} />
                 </button>
