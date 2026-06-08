@@ -111,7 +111,10 @@ export function OrderFormSection() {
                                 height={930}
                             />
                         </div>
-                        <div className="px-5 md:px-8 lg:px-10 pt-2 md:pt-16 lg:pt-24 pb-8 md:pb-10 lg:pb-12 grow space-y-6">
+                        <div
+                            id="order-form"
+                            className="px-5 md:px-8 lg:px-10 pt-2 md:pt-16 lg:pt-24 pb-8 md:pb-10 lg:pb-12 grow space-y-6"
+                        >
                             <div className="space-y-1.5">
                                 <h2 className="font-bold text-xl md:text-2xl lg:text-[28px] lg:leading-11 text-center text-[#F8FAFC]">
                                     আপনার অর্ডার ফর্ম
