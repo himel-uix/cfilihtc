@@ -16,7 +16,6 @@ export function Footer() {
               CFILIHTC
             </Link>
             <p className="text-[#64748B]">© ২০২৬ CFILIHTC. সর্বস্বত্ব সংরক্ষিত।</p>
-            <div className="flex flex-wrap gap-1 lg:gap-2 justify-center text-[#64748B]"><span>যোগাযোগ:<Link href="tell:01XXXXXXXXX">01XXXXXXXXX</Link></span><span><Link href="mail:support@cfilihtc.com">support@cfilihtc.com</Link></span></div>
           </div>
         </div>
       </footer>
