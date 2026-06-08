@@ -15,24 +15,23 @@ const _hindSiliguri = Hind_Siliguri({
 export const metadata: Metadata = {
     title: "CFILIHTC - Men's Supplement Solutions",
     description: "Premium men's vitamins and supplements for optimal health and vitality",
-    generator: "v0.app",
-    icons: {
-        icon: [
-            {
-                url: "/icon-light-32x32.png",
-                media: "(prefers-color-scheme: light)",
-            },
-            {
-                url: "/icon-dark-32x32.png",
-                media: "(prefers-color-scheme: dark)",
-            },
-            {
-                url: "/icon.svg",
-                type: "image/svg+xml",
-            },
-        ],
-        apple: "/apple-icon.png",
-    },
+    // icons: {
+    //     icon: [
+    //         {
+    //             url: "/icon-light-32x32.png",
+    //             media: "(prefers-color-scheme: light)",
+    //         },
+    //         {
+    //             url: "/icon-dark-32x32.png",
+    //             media: "(prefers-color-scheme: dark)",
+    //         },
+    //         {
+    //             url: "/icon.svg",
+    //             type: "image/svg+xml",
+    //         },
+    //     ],
+    //     apple: "/apple-icon.png",
+    // },
 };
 
 export default function RootLayout({
