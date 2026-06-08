@@ -11,7 +11,7 @@ export function Footer() {
       </div>
       <footer className="bg-[#04060F] border-t border-[#0EA5E924] py-6">
         <div className="conatiner mx-auto px-4">
-          <div className="max-w-2xl mx-auto text-center space-y-2 space-y-3 lg:space-y-4">
+          <div className="max-w-2xl mx-auto text-center space-y-2 md:space-y-3 lg:space-y-4">
             <Link href="/" className="inline-block uppercase font-bold text-primary text-lg md:text-xl lg:text-3xl">
               CFILIHTC
             </Link>

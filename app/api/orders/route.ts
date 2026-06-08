@@ -9,9 +9,16 @@ export async function POST(request: NextRequest) {
 
     const { name, email, phone, address, quantity, total } = body;
 
-    if (!name || !email || !phone || !address || !quantity || !total) {
+    if (!name || !phone || !address || !quantity || !total) {
       return NextResponse.json(
         { error: 'Missing required fields' },
+        { status: 400 }
+      );
+    }
+
+    if (!/^01\d{9}$/.test(phone)) {
+      return NextResponse.json(
+        { error: 'Invalid phone number. Must be a valid 11-digit Bangladeshi number.' },
         { status: 400 }
       );
     }

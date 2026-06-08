@@ -31,6 +31,13 @@ export function OrderFormSection() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        const phoneRegex = /^01\d{9}$/;
+        if (!phoneRegex.test(formData.phone)) {
+            toast.error("একটি বৈধ 11-অঙ্কের বাংলাদেশী মোবাইল নম্বর দিন (01XXXXXXXXX)");
+            return;
+        }
+
         setLoading(true);
 
         try {
@@ -131,7 +138,7 @@ export function OrderFormSection() {
 
                                 <div className="space-y-1.5">
                                     <label className="text-sm font-medium text-foreground inline-block">
-                                        ইমেইল *
+                                        ইমেইল
                                     </label>
                                     <Input
                                         type="email"
@@ -139,7 +146,6 @@ export function OrderFormSection() {
                                         value={formData.email}
                                         onChange={handleChange}
                                         placeholder="আপনার ইমেইল"
-                                        required
                                         disabled={loading}
                                     />
                                 </div>
@@ -153,8 +159,10 @@ export function OrderFormSection() {
                                         name="phone"
                                         value={formData.phone}
                                         onChange={handleChange}
-                                        placeholder="0১ XXX XXX XXX"
+                                        placeholder="01XXXXXXXXX"
                                         required
+                                        pattern="01\d{9}"
+                                        title="একটি বৈধ 11-অঙ্কের বাংলাদেশী মোবাইল নম্বর দিন (01XXXXXXXXX)"
                                         disabled={loading}
                                     />
                                 </div>
