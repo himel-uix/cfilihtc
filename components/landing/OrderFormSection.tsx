@@ -5,6 +5,8 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
+import Image from "next/image";
+import formImage from "@/public/images/form-img.png"
 
 const PRODUCT_PRICE = 1500; // BDT
 
@@ -78,75 +80,29 @@ export function OrderFormSection() {
 
     return (
         <>
-            <div className="py-20 bg-gradient-to-b from-background to-card/50">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="py-6 md:py-10 lg:py-20 bg-linear-to-b from-background to-card/50">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+                    <div className='space-y-3 lg:space-y-4 text-center'>
+                        <span className="inline-block px-3.5 py-1 bg-[#0EA5E914] rounded-[50px] border border-[#0EA5E952] font-bold tracking-[0.8px] text-xs text-[#38BDF8]">অর্ডার করুন</span>
+                        <h2 className="text-[24px] md:text-[32px] lg:text-[40px] font-bold">
+                            এখনই
+                            <span className="text-[#38BDF8]">অর্ডার দিন</span><br />
+                            ঘরে বসে পেয়ে যান
+                        </h2>
+                        <span className="inline-block w-13 h-0.75 rounded-[2px] bg-linear-to-r from-[#0EA5E9] to-transparent"></span>
+                    </div>
+                    <div className="flex flex-col lg:flex-row gap-12 bg-[#0F1523] border border-[#0EA5E952] shadow-[0px_0px_24px_rgba(14,165,233,0.38)] rounded-3xl overflow-hidden">
                         <div className="space-y-6">
-                            <h2 className="text-4xl md:text-5xl font-bold text-foreground">
-                                আজই আপনার স্বাস্থ্য যাত্রা শুরু করুন
-                            </h2>
-                            <p className="text-lg text-muted-foreground">
-                                সীমিত সময়ের অফার - প্রথম ১০০০ ক্রেতার জন্য বিশেষ ছাড়
-                            </p>
-
-                            <div className="space-y-4">
-                                <div className="flex items-start gap-4">
-                                    <span className="text-2xl text-primary">✓</span>
-                                    <div>
-                                        <h4 className="font-semibold text-foreground">
-                                            দ্রুত ডেলিভারি
-                                        </h4>
-                                        <p className="text-muted-foreground text-sm">
-                                            ঢাকা শহরে ২৪ ঘন্টায় ডেলিভারি
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="flex items-start gap-4">
-                                    <span className="text-2xl text-primary">✓</span>
-                                    <div>
-                                        <h4 className="font-semibold text-foreground">
-                                            ১০০% নিরাপদ পেমেন্ট
-                                        </h4>
-                                        <p className="text-muted-foreground text-sm">
-                                            সকল প্রধান পেমেন্ট পদ্ধতি গ্রহণযোগ্য
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="flex items-start gap-4">
-                                    <span className="text-2xl text-primary">✓</span>
-                                    <div>
-                                        <h4 className="font-semibold text-foreground">
-                                            ৩০ দিন মানি-ব্যাক গ্যারান্টি
-                                        </h4>
-                                        <p className="text-muted-foreground text-sm">
-                                            সন্তুষ্ট না হলে সম্পূর্ণ অর্থ ফেরত
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <Button
-                                size="lg"
-                                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8"
-                                onClick={scrollToForm}
-                            >
-                                এখনই অর্ডার করুন
-                            </Button>
+                            <Image className="w-full h-full" src={formImage} alt="form image" width={632} height={930} />
                         </div>
-
-                        <div className="relative">
-                            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl blur-2xl"></div>
-                            <Card
-                                ref={formRef}
-                                className="relative border-primary/50 bg-card p-8 space-y-6"
-                            >
-                                <h3 className="text-2xl font-bold text-foreground">
-                                    দ্রুত অর্ডার ফর্ম
-                                </h3>
-
-                                <form onSubmit={handleSubmit} className="space-y-4">
-                                    <div>
-                                        <label className="text-sm font-medium text-foreground">
+                        <div className="px-5 md:px-8 lg:px-10 pt-2 md:pt-16 lg:pt-24 pb-8 md:pb-10 lg:pb-12 grow space-y-6">
+                            <div className="space-y-1.5">
+                                <h2 className="font-bold text-xl md:text-2xl lg:text-[28px] lg:leading-11 text-center text-[#F8FAFC]">আপনার অর্ডার ফর্ম</h2>
+                                <p className="font-normal text-xs md:text-sm lg:text-base text-center text-[#64748B]">সব তথ্য সঠিক দিন - আমরা কল করে কনফার্ম করব</p>
+                            </div>
+                            <form onSubmit={handleSubmit} className="space-y-4">
+                                    <div className="space-y-1.5">
+                                        <label className="text-sm font-medium text-foreground inline-block">
                                             আপনার নাম *
                                         </label>
                                         <Input
@@ -160,8 +116,8 @@ export function OrderFormSection() {
                                         />
                                     </div>
 
-                                    <div>
-                                        <label className="text-sm font-medium text-foreground">
+                                    <div className="space-y-1.5">
+                                        <label className="text-sm font-medium text-foreground inline-block">
                                             ইমেইল *
                                         </label>
                                         <Input
@@ -175,8 +131,8 @@ export function OrderFormSection() {
                                         />
                                     </div>
 
-                                    <div>
-                                        <label className="text-sm font-medium text-foreground">
+                                    <div className="space-y-1.5">
+                                        <label className="text-sm font-medium text-foreground inline-block">
                                             মোবাইল নম্বর *
                                         </label>
                                         <Input
@@ -190,8 +146,8 @@ export function OrderFormSection() {
                                         />
                                     </div>
 
-                                    <div>
-                                        <label className="text-sm font-medium text-foreground">
+                                    <div className="space-y-1.5">
+                                        <label className="text-sm font-medium text-foreground inline-block">
                                             ঠিকানা *
                                         </label>
                                         <Input
@@ -205,8 +161,8 @@ export function OrderFormSection() {
                                         />
                                     </div>
 
-                                    <div>
-                                        <label className="text-sm font-medium text-foreground">
+                                    <div className="space-y-1.5">
+                                        <label className="text-sm font-medium text-foreground inline-block">
                                             পরিমাণ *
                                         </label>
                                         <select
@@ -239,7 +195,7 @@ export function OrderFormSection() {
                                         {loading ? "প্রক্রিয়া করছে..." : "এখনই অর্ডার করুন"}
                                     </Button>
                                 </form>
-                            </Card>
+
                         </div>
                     </div>
                 </div>

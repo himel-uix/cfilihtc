@@ -37,7 +37,7 @@ const Benifit = () => {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 lg:gap-6">
                     {benifits.map((benifit) => (
-                        <div key={benifit.id} className="px-4.5 py-5.5 rounded-lg bg-[#0F1523] border border-[#EF444424]">
+                        <div key={benifit.id} className="px-4.5 py-5.5 rounded-lg bg-[#0F1523] border border-[#EF444424] transition-all duration-300 ease-linear hover:-translate-y-1">
                             <div className="flex items-center justify-center mb-4">
                                 <Image src={benifit.icon} alt={benifit.title} width={48} height={48} className="size-12" />
                             </div>

@@ -56,7 +56,7 @@ const WhySolutionSection = () => {
                     </div>
                     <div className="space-y-3 md:space-y-4 lg:max-w-7/12 w-full shrink-0">
                         {features.map(feature => (
-                            <div key={feature.id} className="flex gap-3.5 border border-[#0F1523] rounded-[12px] lg:p-4.5 p-3 bg-[#0F1523]">
+                            <div key={feature.id} className="flex gap-3.5 border border-[#0F1523] rounded-[12px] lg:p-4.5 p-3 bg-[#0F1523] transition-all duration-300 ease-linear hover:-translate-y-1">
                                 <div className="size-11.5 rounded-[11px] py-1 px-2.5 bg-[#0EA5E91A] border border-[#0EA5E952] flex items-center justify-center shrink-0">
                                     <Image src={feature.icon} alt={feature.title} width={21} height={34} className="h-5 w-8.5 shrink-0" />
                                 </div>
