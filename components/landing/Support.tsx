@@ -29,7 +29,7 @@ const Support = () => {
     ]
   return (
     <section className='py-6 bg-[#0F1523] border-y border-[#0EA5E952]'>
-        <div className="container mx-auto px-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8 lg:gap-11">
+        <div className="container mx-auto px-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8 lg:gap-11 items-center">
             {supportItems.map((item)=>(
                     <div className='flex items-center gap-3 md:pr-4 lg:pr-11 sm:border-r border-white last:pr-0 last:border-r-0' key={item.id}>
                         <Image src={item.icon} alt={item.title} width={64} height={64} className='size-8 md:size-10 lg:size-16' />

@@ -1,45 +1,72 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { handleOrderClick } from "@/lib/utils";
 import { Button } from "../ui/button";
 
 function StickyCta() {
     const [isVisible, setIsVisible] = useState(false);
-    const [lastScrollY, setLastScrollY] = useState(0);
+    const lastScrollY = useRef(0);
 
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
 
-            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            const faqSection = document.getElementById("faq-section");
+
+            // FAQ section শেষ হয়ে গেলে CTA hide
+            if (faqSection) {
+                const faqBottom =
+                    faqSection.offsetTop + faqSection.offsetHeight;
+
+                if (currentScrollY + window.innerHeight >= faqBottom) {
+                    setIsVisible(false);
+                    lastScrollY.current = currentScrollY;
+                    return;
+                }
+            }
+
+            // নিচে scroll করলে CTA show
+            if (
+                currentScrollY > lastScrollY.current &&
+                currentScrollY > 100
+            ) {
                 setIsVisible(true);
-            } else if (currentScrollY < lastScrollY) {
+            }
+            // উপরে scroll করলে CTA hide
+            else if (currentScrollY < lastScrollY.current) {
                 setIsVisible(false);
             }
 
-            setLastScrollY(currentScrollY);
+            lastScrollY.current = currentScrollY;
         };
-        window.addEventListener("scroll", handleScroll, { passive: true });
+
+        window.addEventListener("scroll", handleScroll, {
+            passive: true,
+        });
+
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
-    }, [lastScrollY]);
+    }, []);
 
     return (
         <section
-            className={`fixed bottom-0 left-0 right-0 bg-background z-50 py-3 shadow-lg border-t transition-transform duration-300 ${isVisible ? "translate-y-0" : "translate-y-full"
-                }`}
+            className={`fixed bottom-0 left-0 right-0 bg-background z-50 py-3 shadow-lg border-t transition-transform duration-300 ${
+                isVisible ? "translate-y-0" : "translate-y-full"
+            }`}
         >
-            <div className="flex items-center gap-3 md:gap-6 container mx-auto px-5">
+            <div className="container mx-auto flex items-center gap-3 px-5 md:gap-6">
                 <div>
-                    <p className="line-through text-gray-500">৳৫,৯৯৮</p>
-                    <h4 className="text-xl font-bold text-primary">৳২,৯৯৯</h4>
+                    <p className="text-gray-500 line-through">৳৫,৯৯৮</p>
+                    <h4 className="text-primary text-xl font-bold">
+                        ৳২,৯৯৯
+                    </h4>
                 </div>
 
                 <Button
                     size="lg"
-                    className="bg-primary hover:bg-primary/90 grow md:w-full text-white font-semibold px-4 md:px-6 lg:px-8 py-6 text-sm lg:text-xl w-fit "
+                    className="bg-primary hover:bg-primary/90 grow w-fit px-4 py-6 text-sm font-semibold text-white md:w-full md:px-6 lg:px-8 lg:text-xl"
                     onClick={handleOrderClick}
                 >
                     এখনই অর্ডার করুন

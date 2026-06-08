@@ -32,7 +32,7 @@ export function HeroSection({ onOrderClick }: { onOrderClick: () => void }) {
                         </li>
                         <li className="flex gap-2  text-sm leading-6 text-[#CBD5E1]">
                             <Image src={"/icons/round-clock.png"} alt="" width={28} height={28} />{" "}
-                            ৪৫ থেকে ১ ঘন্টা খেলার সক্ষমতা তৈরি করে
+                            ২৫ থেকে ৩০ মিনিট খেলার সক্ষমতা তৈরি করে
                         </li>
                         <li className="flex gap-2  text-sm leading-6 text-[#CBD5E1]">
                             <Image src={"/icons/round-arm.png"} alt="" width={28} height={28} />{" "}
@@ -95,7 +95,7 @@ export function HeroSection({ onOrderClick }: { onOrderClick: () => void }) {
                 </div>
                 <div className="flex flex-col items-center gap-4">
                     <Image className='animate-float' src={"/images/hero-img.png"} alt="" width={440} height={520} />
-                    <Image src={"/images/hero-rating.png"} alt="" width={300} height={110} />
+                    <Image className="hidden lg:block" src={"/images/hero-rating.png"} alt="" width={300} height={110} />
                 </div>
             </div>
         </section>

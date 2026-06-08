@@ -42,11 +42,11 @@ const NotificationPopup = () => {
                         <div className="bg-emerald-50 text-emerald-500 rounded-full p-2 shrink-0">
                             <ShoppingBag className="w-5 h-5" />
                         </div>
-                        <div className="flex-1">
-                            <h4 className="font-bold text-gray-900 text-sm">নতুন অর্ডার! 🎉</h4>
+                        <div className="flex-1 -space-y-px">
                             <p className="text-xs text-gray-600 mt-0.5">
-                                <span className="font-semibold text-gray-800">{details.name}</span> ({details.location} থেকে) মাত্রই <span className="text-emerald-600 font-medium">{details.product}</span> কিনলেন।
+                                <span className="font-semibold text-gray-800">{details.name}</span> 
                             </p>
+                            <p className="text-emerald-600 font-medium">{details.location} থেকে কিনলেন।</p>
                         </div>
                     </div>
                 </div>
