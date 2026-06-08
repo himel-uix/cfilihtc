@@ -43,7 +43,7 @@ const Trust = () => {
         <section className="py-6 md:py-10 lg:py-20 bg-[#070B18]">
             <div className="container mx-auto px-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6">
                 {trustedItems.map(item => (
-                    <div className="px-2 md:px-4.5 py-3 md:py-5 rounded-lg bg-[#0F1523] border border-[#0EA5E924] shadow-[0px_0px_5px_rgba(14,165,233,0.38)]">
+                    <div key={item.id} className="px-2 md:px-4.5 py-3 md:py-5 rounded-lg bg-[#0F1523] border border-[#0EA5E924] shadow-[0px_0px_5px_rgba(14,165,233,0.38)]">
                         <div className="flex items-center justify-center mb-4">
                             <Image src={item.icon} alt={item.title} width={34} height={55} />
                         </div>

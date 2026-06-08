@@ -9,9 +9,6 @@ import { Footer } from "@/components/landing/Footer";
 import Header from "@/components/landing/Header";
 import StickyCta from "@/components/landing/StickyCta";
 import Image from "next/image";
-import KabuSection from "@/components/landing/KabuSection";
-import Men40 from "@/components/landing/Men40";
-import Changes from "@/components/landing/Changes";
 import PainSection from "@/components/landing/painSection";
 import WhySolutionSection from "@/components/landing/WhySolutionSection";
 import Benifit from "@/components/landing/Benifit";
@@ -24,6 +21,7 @@ import whatsappIcon from "@/public/icons/whatsapp-icon.png"
 import privacyPolicyIcon from "@/public/icons/privacy-policy.png"
 import NotificationPopup from "@/components/landing/NotificationPopup";
 import PolicyPopup from "@/components/landing/PolicyPopup";
+import { useState } from "react";
 
 export default function HomePage() {
     const handleOrderClick = () => {
@@ -33,6 +31,11 @@ export default function HomePage() {
         }
     };
 
+    const [ispopupOpen, setIsPopUpOpen] = useState(false);
+    const handleClosePopup = () => {
+        setIsPopUpOpen(!ispopupOpen);
+    }
+
     return (
         <>
             <Header />
@@ -40,7 +43,6 @@ export default function HomePage() {
                 <HeroSection onOrderClick={handleOrderClick} />
                 <StickyCta />
                 <Support />
-                {/* <KabuSection /> */}
                 <PainSection />
                 <WhySolutionSection />
                 <Benifit />
@@ -59,13 +61,13 @@ export default function HomePage() {
                 <button className="size-13.5 rounded-full cursor-pointer">
                     <Image className="w-full" src={whatsappIcon} alt="whatsapp logo" width={54} height={54} />
                 </button>
-                <button className="size-13.5 rounded-full cursor-pointer">
+                <button onClick={() => setIsPopUpOpen(true)} className="size-13.5 rounded-full cursor-pointer">
                     <Image className="w-full" src={privacyPolicyIcon} alt="privacy policy" width={54} height={54} />
                 </button>
             </div>
             {/* sociel */}
             <NotificationPopup />
-            <PolicyPopup />
+            <PolicyPopup isopen={ispopupOpen} handleClick={handleClosePopup} />
         </>
     );
 }
