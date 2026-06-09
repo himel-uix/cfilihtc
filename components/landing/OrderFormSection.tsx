@@ -14,7 +14,6 @@ export function OrderFormSection() {
     const formRef = useRef<HTMLDivElement>(null);
     const [formData, setFormData] = useState({
         name: "",
-        email: "",
         phone: "",
         address: "",
         quantity: 1,
@@ -68,7 +67,6 @@ export function OrderFormSection() {
             toast.success("আপনার অর্ডার সফলভাবে গ্রহণ করা হয়েছে। আমরা শীঘ্রই যোগাযোগ করব।");
             setFormData({
                 name: "",
-                email: "",
                 phone: "",
                 address: "",
                 quantity: 1,
@@ -135,20 +133,6 @@ export function OrderFormSection() {
                                         onChange={handleChange}
                                         placeholder="আপনার সম্পূর্ণ নাম"
                                         required
-                                        disabled={loading}
-                                    />
-                                </div>
-
-                                <div className="space-y-1.5">
-                                    <label className="text-sm font-medium text-foreground inline-block">
-                                        ইমেইল
-                                    </label>
-                                    <Input
-                                        type="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        placeholder="আপনার ইমেইল"
                                         disabled={loading}
                                     />
                                 </div>
@@ -231,10 +215,10 @@ export function OrderFormSection() {
 
                                 <Button
                                     type="submit"
-                                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+                                    className="w-full bg-primary hover:bg-primary/90 text-white font-semibold"
                                     disabled={loading}
                                 >
-                                    {loading ? "প্রক্রিয়া করছে..." : "এখনই অর্ডার করুন"}
+                                    {loading ? "প্রক্রিয়া করছে..." : "✅ অর্ডারটি নিশ্চিত করুন"}
                                 </Button>
                             </form>
                         </div>

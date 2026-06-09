@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
     await connectDB();
     const body = await request.json();
 
-    const { name, email, phone, address, quantity, total } = body;
+    const { name, phone, address, quantity, total } = body;
 
     if (!name || !phone || !address || !quantity || !total) {
       return NextResponse.json(
@@ -25,7 +25,6 @@ export async function POST(request: NextRequest) {
 
     const order = await Order.create({
       name,
-      email,
       phone,
       address,
       quantity,
