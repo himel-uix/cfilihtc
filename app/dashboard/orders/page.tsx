@@ -9,7 +9,6 @@ import { Input } from '@/components/ui/input';
 interface Order {
   _id: string;
   name: string;
-  email: string;
   phone: string;
   address: string;
   quantity: number;
@@ -65,7 +64,6 @@ export default function OrdersPage() {
 
   const filteredOrders = orders.filter((order) =>
     order.name.toLowerCase().includes(search.toLowerCase()) ||
-    order.email.toLowerCase().includes(search.toLowerCase()) ||
     order.phone.includes(search)
   );
 
@@ -81,7 +79,7 @@ export default function OrdersPage() {
       <Card className="border-border bg-card/50 p-6">
         <Input
           type="search"
-          placeholder="Search by name, email, or phone..."
+          placeholder="Search by name or phone..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="max-w-md"
@@ -106,9 +104,6 @@ export default function OrdersPage() {
                   </th>
                   <th className="text-left py-4 px-6 font-semibold text-muted-foreground">
                     CUSTOMER
-                  </th>
-                  <th className="text-left py-4 px-6 font-semibold text-muted-foreground">
-                    EMAIL
                   </th>
                   <th className="text-left py-4 px-6 font-semibold text-muted-foreground">
                     PHONE
@@ -145,7 +140,6 @@ export default function OrdersPage() {
                     <td className="py-4 px-6 text-foreground font-medium">
                       {order.name}
                     </td>
-                    <td className="py-4 px-6 text-muted-foreground">{order.email}</td>
                     <td className="py-4 px-6 text-muted-foreground">{order.phone}</td>
                     <td className="py-4 px-6 text-muted-foreground text-sm">
                       {order.address}
