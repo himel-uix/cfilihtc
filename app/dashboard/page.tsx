@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { pushToDataLayer } from "@/lib/gtm";
 
 interface Order {
     _id: string;
@@ -59,10 +60,13 @@ export default function DashboardPage() {
 
             if (response.ok) {
                 toast.success("Order confirmed successfully");
-                if (typeof window !== "undefined" && (window as any).fbq) {
-                    (window as any).fbq("trackCustom", "OrderConfirmed", {
+                const order = orders.find((o) => o._id === orderId);
+                if (order) {
+                    pushToDataLayer({
+                        event: "order_confirmed",
                         order_id: orderId,
-                        value: orders.find((o) => o._id === orderId)?.total,
+                        value: order.total,
+                        currency: "BDT",
                     });
                 }
 

@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import formImage from "@/public/images/form-img.png";
+import { pushToDataLayer } from "@/lib/gtm";
 
 const PRODUCT_PRICE = 2999; // BDT
 
@@ -37,11 +38,29 @@ export function OrderFormSection() {
             return;
         }
 
+        const total = PRODUCT_PRICE * formData.quantity;
+        const quantity = formData.quantity;
+
+        pushToDataLayer({ ecommerce: null });
+        pushToDataLayer({
+            event: "begin_checkout",
+            ecommerce: {
+                currency: "BDT",
+                value: total,
+                items: [
+                    {
+                        item_id: "mens_multivitamin_40",
+                        item_name: "Men's 40+ Multivitamin",
+                        price: PRODUCT_PRICE,
+                        quantity,
+                    },
+                ],
+            },
+        });
+
         setLoading(true);
 
         try {
-            const total = PRODUCT_PRICE * formData.quantity;
-
             const response = await fetch("/api/orders", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -56,13 +75,27 @@ export function OrderFormSection() {
                 return;
             }
 
-            if (typeof window !== "undefined" && (window as any).fbq) {
-                (window as any).fbq("track", "Purchase", {
+            const order = await response.json();
+
+            pushToDataLayer({ ecommerce: null });
+            pushToDataLayer({
+                event: "purchase",
+                ecommerce: {
+                    transaction_id: order._id,
                     value: total,
-                    currency: "USD",
-                    content_name: "Men's 40+ Multivitamin",
-                });
-            }
+                    shipping: 0,
+                    tax: 0,
+                    currency: "BDT",
+                    items: [
+                        {
+                            item_id: "mens_multivitamin_40",
+                            item_name: "Men's 40+ Multivitamin",
+                            price: PRODUCT_PRICE,
+                            quantity,
+                        },
+                    ],
+                },
+            });
 
             toast.success("আপনার অর্ডার সফলভাবে গ্রহণ করা হয়েছে। আমরা শীঘ্রই যোগাযোগ করব।");
             setFormData({
@@ -78,6 +111,25 @@ export function OrderFormSection() {
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+        pushToDataLayer({ ecommerce: null });
+        pushToDataLayer({
+            event: "view_item",
+            ecommerce: {
+                currency: "BDT",
+                value: PRODUCT_PRICE,
+                items: [
+                    {
+                        item_id: "mens_multivitamin_40",
+                        item_name: "Men's 40+ Multivitamin",
+                        price: PRODUCT_PRICE,
+                        quantity: 1,
+                    },
+                ],
+            },
+        });
+    }, []);
 
     const scrollToForm = () => {
         formRef.current?.scrollIntoView({ behavior: "smooth" });
