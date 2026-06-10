@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { pushToDataLayer } from "@/lib/gtm";
+import { pushToDataLayer, generateEventId } from "@/lib/gtm";
 
 interface Order {
     _id: string;
@@ -62,12 +62,30 @@ export default function DashboardPage() {
                 toast.success("Order confirmed successfully");
                 const order = orders.find((o) => o._id === orderId);
                 if (order) {
+                    const eventId = generateEventId();
+
                     pushToDataLayer({
                         event: "order_confirmed",
+                        event_id: eventId,
                         order_id: orderId,
                         value: order.total,
                         currency: "BDT",
                     });
+
+                    fetch("/api/meta/events", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            event_name: "order_confirmed",
+                            event_id: eventId,
+                            phone: order.phone,
+                            custom_data: {
+                                value: order.total,
+                                currency: "BDT",
+                                order_id: orderId,
+                            },
+                        }),
+                    }).catch(() => {});
                 }
 
                 fetchOrders();

@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import formImage from "@/public/images/form-img.png";
-import { pushToDataLayer } from "@/lib/gtm";
+import { pushToDataLayer, generateEventId } from "@/lib/gtm";
 
 const PRODUCT_PRICE = 2999; // BDT
 
@@ -40,10 +40,12 @@ export function OrderFormSection() {
 
         const total = PRODUCT_PRICE * formData.quantity;
         const quantity = formData.quantity;
+        const eventId = generateEventId();
 
         pushToDataLayer({ ecommerce: null });
         pushToDataLayer({
             event: "begin_checkout",
+            event_id: eventId,
             ecommerce: {
                 currency: "BDT",
                 value: total,
@@ -58,6 +60,17 @@ export function OrderFormSection() {
             },
         });
 
+        fetch("/api/meta/events", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                event_name: "begin_checkout",
+                event_id: eventId,
+                phone: formData.phone,
+                custom_data: { value: total, currency: "BDT" },
+            }),
+        }).catch(() => {});
+
         setLoading(true);
 
         try {
@@ -67,6 +80,7 @@ export function OrderFormSection() {
                 body: JSON.stringify({
                     ...formData,
                     total,
+                    event_id: eventId,
                 }),
             });
 
@@ -80,6 +94,7 @@ export function OrderFormSection() {
             pushToDataLayer({ ecommerce: null });
             pushToDataLayer({
                 event: "purchase",
+                event_id: eventId,
                 ecommerce: {
                     transaction_id: order._id,
                     value: total,
@@ -113,9 +128,12 @@ export function OrderFormSection() {
     };
 
     useEffect(() => {
+        const eventId = generateEventId();
+
         pushToDataLayer({ ecommerce: null });
         pushToDataLayer({
             event: "view_item",
+            event_id: eventId,
             ecommerce: {
                 currency: "BDT",
                 value: PRODUCT_PRICE,
@@ -129,6 +147,16 @@ export function OrderFormSection() {
                 ],
             },
         });
+
+        fetch("/api/meta/events", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                event_name: "view_item",
+                event_id: eventId,
+                custom_data: { value: PRODUCT_PRICE, currency: "BDT" },
+            }),
+        }).catch(() => {});
     }, []);
 
     const scrollToForm = () => {
